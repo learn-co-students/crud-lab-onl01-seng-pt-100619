@@ -58,7 +58,6 @@ describe('ReviewInput Component', () => {
     form.simulate('submit',  { preventDefault() {} });
 
     wrapper.update()
-
     expect(wrapper.find(Review).html()).to.include('Better Ingredients')
   });
 
