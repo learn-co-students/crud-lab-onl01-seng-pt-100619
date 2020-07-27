@@ -3,7 +3,8 @@ import cuid from 'cuid';
 export const cuidFn = cuid;
 
 export default function manageRestaurants(state = {
-    restaurants: []
+    restaurants: [],
+    reviews: []
     }, 
     action) 
     {
@@ -13,7 +14,7 @@ export default function manageRestaurants(state = {
             const restaurant = {
                 text: action.text, // cant pass the entire state as a prop it would have a duplicate text key 
                 id: cuid(),
-                reviews: []
+                // reviewIds: []
             }
             // console.log(restaurant) useful to find duplicate text key
             return {
@@ -25,22 +26,23 @@ export default function manageRestaurants(state = {
             }
         case 'ADD_REVIEW':
             // console.log(state.restaurants)
-            const reviewedRestaurantId = state.restaurants.findIndex(restaurant => {return restaurant.id === action.review.id})
-            const review = {text: action.text, id: cuid()}
-            console.log(state.restaurants[reviewedRestaurantId])
-            return{
-                ...state, 
-                restaurants: [
-                    ...state.restaurants.splice(0, reviewedRestaurantId), 
-                    state.restaurants[reviewedRestaurantId], {
-                        ...state.restaurants[reviewedRestaurantId], 
-                        reviews: [...state.restaurants[reviewedRestaurantId].reviews.concat(review)]
-                    }, 
-                    state.restaurants.splice(reviewedRestaurantId+1)
-                ]
+            // const reviewedRestaurant = state.restaurants.find(restaurant => {return restaurant.id === action.review.id})
+            const review = {text: action.review.text, id: cuid(), restaurantId: action.review.restaurantId}
+            // console.log(review)
+            // reviewedRestaurant.reviewIds.concat(review.id)
+            return {
+                ...state, reviews: [...state.reviews.concat(review)]
+            }
+        case 'DELETE_REVIEW':
+            // const reviews = state.reviews.filter(review => review.id !== action.reviewId)
+            return {
+                ...state, reviews: [...state.reviews.filter(review => review.id !== action.reviewId)]
             }
         default: // if no default is returned the store props will be undefined at the start of the app so they cant be referenced
             // console.log(state)
             return state
     }
 }
+
+
+
