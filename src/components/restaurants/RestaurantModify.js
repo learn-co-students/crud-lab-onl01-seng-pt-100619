@@ -1,17 +1,22 @@
 import React, { Component } from 'react';
 
-class RestaurantInput extends Component {
-  state = {
-    text: ""
+class RestaurantModify extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      text: props.restaurant.text,
+      id: props.restaurant.id
+    }
   }
-
+  
   handleChange = (event) => {
     this.setState({text: event.target.value})
   }
 
   handleSubmit = (event) => {
     event.preventDefault()
-    this.props.addRestaurant(this.state)
+    this.props.modifyRestaurant(this.state)
+    this.props.modifyComplete()
     this.setState({text: ""})
   }
 
@@ -19,7 +24,7 @@ class RestaurantInput extends Component {
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
-          <label>Restaurant Name: </label>
+          <label>Change Restaurant Name: </label>
           <input onChange={this.handleChange} type='text' value={this.state.text} />
           <input type='submit' />
         </form>
@@ -28,4 +33,4 @@ class RestaurantInput extends Component {
   }
 };
 
-export default RestaurantInput;
+export default RestaurantModify;

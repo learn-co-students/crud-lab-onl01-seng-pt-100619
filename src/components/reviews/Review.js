@@ -4,15 +4,18 @@ class Review extends Component {
 
   render() {
     const { review } = this.props
-
-    return (
-      <div>
-        <li>
-          {review.text}
-        </li>
-        <button> X </button>
-      </div>
-    );
+    console.log('props in review:')
+    console.log(this.props)
+    if (this.props.review.restaurantId === this.props.restaurantId) {
+      return (
+        <div>
+          <li>
+            {review.text}
+          </li>
+          <button onClick={() => this.props.deleteReview(this.props.review.restaurantId, this.props.review.id)}> X </button>
+        </div>
+      );
+    }
   }
 
 };
