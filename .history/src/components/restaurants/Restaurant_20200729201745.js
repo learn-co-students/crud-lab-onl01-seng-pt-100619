@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import ReviewsContainer from '../../containers/ReviewsContainer'
 
+import React, { Component } from 'react';
+import ReviewsContainer from '../../containers/ReviewsContainer'
 
 class Restaurant extends Component {
 
