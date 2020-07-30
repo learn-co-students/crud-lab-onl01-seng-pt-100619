@@ -1,6 +1,6 @@
+  
 import React, { Component } from 'react';
 import ReviewsContainer from '../../containers/ReviewsContainer'
-
 
 class Restaurant extends Component {
 
@@ -14,7 +14,7 @@ class Restaurant extends Component {
     return (
       <div>
         <li>
-          {restaurant.text}
+          
           <button onClick={() => this.handleOnClick()}> X </button>
           <ReviewsContainer restaurant={restaurant}/>
         </li>

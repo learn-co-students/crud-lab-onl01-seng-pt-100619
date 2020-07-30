@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import ReviewsContainer from '../../containers/ReviewsContainer'
 
-
 class Restaurant extends Component {
 
   handleOnClick() {
